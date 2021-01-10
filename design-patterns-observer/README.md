@@ -176,7 +176,7 @@ class ConcreteObserver2 extends Observer {
 @enduml
 ```
 
-## Observer with an ObserverManager
+### Observer with an ObserverManager
 ```
 @startuml
 
