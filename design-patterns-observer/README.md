@@ -94,11 +94,11 @@ public class ObserverManager {
 	private ObserverManager() {
 	}
 
-	public static void register(final Observer monsterObserver) {
+	public static void register(final Observer observer) {
 		observers.add(monsterObserver);
 	}
 
-	public static void unregister(final Observer monsterObserver) {
+	public static void unregister(final Observer observer) {
 		observers.remove(monsterObserver);
 	}
 

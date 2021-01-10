@@ -9,12 +9,12 @@ public class ObserverManager {
 	private ObserverManager() {
 	}
 
-	public static void register(final Observer monsterObserver) {
-		observers.add(monsterObserver);
+	public static void register(final Observer observer) {
+		observers.add(observer);
 	}
 
-	public static void unregister(final Observer monsterObserver) {
-		observers.remove(monsterObserver);
+	public static void unregister(final Observer observer) {
+		observers.remove(observer);
 	}
 
 	public static void notifyAllObservers() {
