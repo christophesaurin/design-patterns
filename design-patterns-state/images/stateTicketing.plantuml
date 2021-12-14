@@ -1,0 +1,13 @@
+@startuml
+title State Design Pattern
+
+[*] --> Todo
+Todo --> InProgress : start
+InProgress --> Todo : stop
+Todo --> Cancelled : cancel
+InProgress --> Done : end
+InProgress --> Cancelled : cancel
+Done --> [*]
+Cancelled --> [*]
+
+@enduml
