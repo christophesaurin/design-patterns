@@ -4,25 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerObserverManager {
-	private static List<PlayerObserver> playerObservers = new ArrayList<>();
+    private static List<PlayerObserver> playerObservers = new ArrayList<>();
 
-	public static void register(final PlayerObserver playerObserver) {
-		playerObservers.add(playerObserver);
-	}
+    private PlayerObserverManager() {
+    }
 
-	public static void unregister(final PlayerObserver playerObserver) {
-		playerObservers.remove(playerObserver);
-	}
+    public static void register(final PlayerObserver playerObserver) {
+        playerObservers.add(playerObserver);
+    }
 
-	public static void notifyDamage(final int health, final int damage) {
-		for (PlayerObserver playerObserver : playerObservers) {
-			playerObserver.notifyDamage(health, damage);
-		}
-	}
+    public static void unregister(final PlayerObserver playerObserver) {
+        playerObservers.remove(playerObserver);
+    }
 
-	public static void notifyDead() {
-		for (PlayerObserver playerObserver : playerObservers) {
-			playerObserver.notifyDead();
-		}
-	}
+    public static void notifyDamage(final int health, final int damage) {
+        playerObservers.forEach(playerObserver -> playerObserver.notifyDamage(health, damage));
+    }
+
+    public static void notifyDead() {
+        playerObservers.forEach(PlayerObserver::notifyDead);
+    }
 }

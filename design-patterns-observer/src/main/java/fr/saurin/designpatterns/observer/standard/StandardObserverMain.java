@@ -1,14 +1,16 @@
 package fr.saurin.designpatterns.observer.standard;
 
+import fr.saurin.designpatterns.observer.common.Observer;
+
 public class StandardObserverMain {
 
 	public static void main(final String[] args) {
-		ConcreteObserver1 concreteObserver1 = new ConcreteObserver1();
-		ConcreteObserver2 concreteObserver2 = new ConcreteObserver2();
-
 		Subject subject = new Subject();
-		subject.addObserver(concreteObserver1);
-		subject.addObserver(concreteObserver2);
+
+		Observer observer1 = new ConcreteObserver1();
+		subject.register(observer1);
+		Observer observer2 = new ConcreteObserver2();
+		subject.register(observer2);
 
 		subject.compute();
 	}

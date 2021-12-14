@@ -1,0 +1,40 @@
+@startuml
+title Observer/Observable Design Patterns
+
+interface Observer {
+    void notify()
+}
+
+interface Observable {
+    void register(Observer observer);
+    void unregister(Observer observer);
+    void notifyObservers();
+}
+
+class Subject implements Observable {
+    List<Observer> observers;
+    public void register(Observer observer);
+    public void unregister(Observer observer);
+    public void notifyObservers();
+}
+
+class Subject
+note left
+    public void notifyObservers() {
+        for (Observer observer : observers) {
+            observer.notify();
+        }
+    }
+end note
+
+Subject o- Observer
+
+
+class ConcreteObserver1 implements Observer {
+    public void notify()
+}
+
+class ConcreteObserver2 implements Observer {
+    public void notify()
+}
+@enduml

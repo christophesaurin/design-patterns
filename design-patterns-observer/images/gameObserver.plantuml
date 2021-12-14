@@ -1,0 +1,55 @@
+@startuml
+
+title Observer/Observable Design Patterns
+
+interface MonsterObserver {
+    void notifyAttack();
+}
+class MonsterObserverManager {
+    List<MonsterObserver> observers
+    public void register(MonsterObserver observer)
+    public void unregister(MonsterObserver observer)
+    public void notifyObservers()
+}
+MonsterObserverManager o- MonsterObserver
+class Monster {
+}
+Monster -> MonsterObserverManager : notifyObservers()
+
+interface PlayerObserver {
+    void notifyDamage(int health, int damage);
+    void notifyDead();
+}
+class PlayerObserverManager {
+    List<PlayerObserver> observers
+    public void register(PlayerObserver observer)
+    public void unregister(PlayerObserver observer)
+    public void notifyObservers()
+}
+PlayerObserverManager o- PlayerObserver
+class Player {
+}
+Player -> PlayerObserverManager : notifyObservers()
+
+class GameManager implements PlayerObserver {
+    void notifyDamage(int health, int damage);
+    void notifyDead();
+}
+class HudManager implements PlayerObserver, MonsterObserver {
+    void notifyAttack();
+    void notifyDamage(int health, int damage);
+    void notifyDead();
+}
+class SoundManager implements PlayerObserver, MonsterObserver {
+    void notifyAttack();
+    void notifyDamage(int health, int damage);
+    void notifyDead();
+}
+
+GameManager -> PlayerObserverManager : register
+HudManager -> PlayerObserverManager : register
+HudManager -> MonsterObserverManager : register
+SoundManager -> PlayerObserverManager : register
+SoundManager -> MonsterObserverManager : register
+
+@enduml

@@ -1,145 +1,155 @@
 # design-patterns observer
 
-1. Standard Observer 
+---
+
+1. Standard Observer
 2. Observer with an ObserverManager
 3. Example in a game
 
 ## Standard Observer
 
 ### UML Diagram
-![alt text](images/observer.png "Design Pattern Observer")
+
+![alt text](images/standardObserver.png "Design Pattern Observer")
 
 ### Class Observer
+
 ```java
 public interface Observer {
-	void notifyObserver();
+    void notifyObserver();
 }
 ```
 
 ### Class Subject
+
 ```java
 public class Subject {
-	private List<Observer> observers = new ArrayList<>();
+    private List<Observer> observers = new ArrayList<>();
 
-	public void addObserver(final Observer observer) {
-		observers.add(observer);
-	}
+    public void addObserver(final Observer observer) {
+        observers.add(observer);
+    }
 
-	public void removeObserver(final Observer observer) {
-		observers.remove(observer);
-	}
+    public void removeObserver(final Observer observer) {
+        observers.remove(observer);
+    }
 
-	public void notifyAllObservers() {
-		for (Observer observer : observers) {
-			observer.notifyObserver();
-		}
-	}
+    public void notifyAllObservers() {
+        for (Observer observer : observers) {
+            observer.notifyObserver();
+        }
+    }
 
-	public void compute() {
-		System.out.println("Start compute");
-		notifyAllObservers();
-		System.out.println("End compute");
-	}
+    public void compute() {
+        System.out.println("Start compute");
+        notifyAllObservers();
+        System.out.println("End compute");
+    }
 }
 ```
 
 ### class ConcreteObserver1 and ConcreteObserver2
+
 ```java
 public class ConcreteObserver1 implements Observer {
-	@Override
-	public void notifyObserver() {
-		System.out.println("ConcreteObserver1 is notified !");
-	}
+    @Override
+    public void notifyObserver() {
+        System.out.println("ConcreteObserver1 is notified !");
+    }
 }
 
 public class ConcreteObserver2 implements Observer {
-	@Override
-	public void notifyObserver() {
-		System.out.println("ConcreteObserver1 is notified !");
-	}
+    @Override
+    public void notifyObserver() {
+        System.out.println("ConcreteObserver1 is notified !");
+    }
 }
 ```
 
 ## Observer with an ObserverManager
 
 ## UML Diagram
-![alt text](images/observerManager.png "Design Pattern Observer")
+
+![alt text](images/managerObserver.png "Design Pattern Observer")
 
 ### class Observer
+
 No change
 
 ### class Subject
-Delete all design pattern methods
-Use the ObserverManager
+
+Delete all design pattern methods Use the ObserverManager
 
 ```java
 public class Subject {
-	public void compute() {
-		System.out.println("Start compute");
-		ObserverManager.notifyAllObservers();
-		System.out.println("End compute");
-	}
+    public void compute() {
+        System.out.println("Start compute");
+        ObserverManager.notifyAllObservers();
+        System.out.println("End compute");
+    }
 }
 ```
 
 ### class ObserverManager
-Move all design patterns methods of Subject in the ObserverManager
-Rename method "addObserver" to "register"
+
+Move all design patterns methods of Subject in the ObserverManager Rename method "addObserver" to "register"
 Rename method "removeObserver" to "unregister"
 
 ```java
 public class ObserverManager {
-	private static List<Observer> observers = new ArrayList<>();
+    private static List<Observer> observers = new ArrayList<>();
 
-	private ObserverManager() {
-	}
+    private ObserverManager() {
+    }
 
-	public static void register(final Observer observer) {
-		observers.add(monsterObserver);
-	}
+    public static void register(final Observer observer) {
+        observers.add(monsterObserver);
+    }
 
-	public static void unregister(final Observer observer) {
-		observers.remove(monsterObserver);
-	}
+    public static void unregister(final Observer observer) {
+        observers.remove(monsterObserver);
+    }
 
-	public static void notifyAllObservers() {
-		for (Observer observer : observers) {
-			observer.notifyObserver();
-		}
-	}
+    public static void notifyAllObservers() {
+        for (Observer observer : observers) {
+            observer.notifyObserver();
+        }
+    }
 }
 ```
 
 ### class ConcreteObserver
+
 Call register in the constructor
 
 ```java
 public class ConcreteObserver1 implements Observer {
-	public ConcreteObserver1() {
-		ObserverManager.register(this);
-	}
+    public ConcreteObserver1() {
+        ObserverManager.register(this);
+    }
 
-	@Override
-	public void notifyObserver() {
-		System.out.println("ConcreteObserver1 is notified !");
-	}
+    @Override
+    public void notifyObserver() {
+        System.out.println("ConcreteObserver1 is notified !");
+    }
 }
 
 public class ConcreteObserver2 implements Observer {
-	public ConcreteObserver2() {
-		ObserverManager.register(this);
-	}
+    public ConcreteObserver2() {
+        ObserverManager.register(this);
+    }
 
-	@Override
-	public void notifyObserver() {
-		System.out.println("ConcreteObserver2 is notified !");
-	}
+    @Override
+    public void notifyObserver() {
+        System.out.println("ConcreteObserver2 is notified !");
+    }
 }
 ```
 
 ## Code PlantUml
 
 ### Standard Observer
+
 ```
 @startuml
 
@@ -177,6 +187,7 @@ class ConcreteObserver2 extends Observer {
 ```
 
 ### Observer with an ObserverManager
+
 ```
 @startuml
 

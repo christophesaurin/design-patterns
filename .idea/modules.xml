@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/design-patterns.iml" filepath="$PROJECT_DIR$/design-patterns.iml" />
+      <module fileurl="file://$PROJECT_DIR$/design-patterns-observer/design-patterns-observer.iml" filepath="$PROJECT_DIR$/design-patterns-observer/design-patterns-observer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/design-patterns-state/design-patterns-state.iml" filepath="$PROJECT_DIR$/design-patterns-state/design-patterns-state.iml" />
+    </modules>
+  </component>
+</project>
